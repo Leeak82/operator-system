@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Stalker</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>📈 Stock Stalker</h1>
+    <p>Track dips, spikes, and momentum alerts.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Add Watch Symbol</h2>
+      <form id="watchForm">
+        <input id="symbol" placeholder="AAPL" maxlength="15" required>
+        <input id="note" placeholder="Optional note">
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Create Alert Rule</h2>
+      <form id="alertForm">
+        <input id="alertSymbol" placeholder="AAPL" maxlength="15" required>
+        <select id="alertType">
+          <option value="below_price">Drop below price</option>
+          <option value="above_price">Rise above price</option>
+          <option value="percent_drop">Drop % in window</option>
+          <option value="percent_rise">Rise % in window</option>
+        </select>
+        <input id="threshold" type="number" step="0.01" placeholder="Threshold" required>
+        <input id="window" type="number" min="1" max="1440" value="60" placeholder="Window mins">
+        <button type="submit">Save Alert</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Monitor Settings</h2>
+      <div class="row">
+        <label for="interval">Poll every (seconds)</label>
+        <input id="interval" type="number" value="120" min="15" max="3600">
+      </div>
+      <button id="startBtn">Start Monitoring</button>
+      <button id="stopBtn">Stop</button>
+      <button id="notifyBtn">Enable Notifications</button>
+      <p id="status">Idle.</p>
+    </section>
+
+    <section class="card">
+      <h2>Watchlist</h2>
+      <div id="watchlist"></div>
+    </section>
+
+    <section class="card">
+      <h2>Alert Rules</h2>
+      <div id="alerts"></div>
+    </section>
+
+    <section class="card">
+      <h2>Recent Triggered Alerts</h2>
+      <div id="events"></div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
