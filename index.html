@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HaulNow — Rent Trucks with or without Drivers</title>
+  <meta name="description" content="Post your truck for rent, book trucks fast, add driver-on-demand, and schedule dump runs with live route previews." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🚚 HaulNow</div>
+    <nav>
+      <a href="#book">Book</a>
+      <a href="#post">Post a Truck</a>
+      <a href="#how">How it Works</a>
+    </nav>
+    <button id="themeToggle" class="ghost-btn">🌙</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="pill">Same-day truck rentals + driver option</p>
+        <h1>Move anything. Rent a truck with or without a driver in minutes.</h1>
+        <p class="sub">For junk removal, dump runs, furniture pickups, and short-haul loads. Built for speed, trust, and repeat use.</p>
+        <div class="cta-row">
+          <a href="#book" class="btn">Book a Truck</a>
+          <a href="#post" class="btn btn-outline">List Your Truck</a>
+        </div>
+      </div>
+      <div class="glass">
+        <h3>Why this can go viral</h3>
+        <ul>
+          <li>⚡ 45-second booking flow</li>
+          <li>📍 Live route previews and distance-based estimates</li>
+          <li>🎁 Referral rewards built in</li>
+          <li>⭐ Ratings and repeat-booking shortcuts</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="book" class="card">
+      <h2>Book a Truck</h2>
+      <form id="bookingForm" class="grid">
+        <label>Pickup Address <input required name="pickup" placeholder="123 Main St" /></label>
+        <label>Dropoff / Dump Site <input required name="dropoff" placeholder="City dump, storage, etc." /></label>
+        <label>Load Type
+          <select name="loadType" required>
+            <option value="furniture">Furniture</option>
+            <option value="construction">Construction Debris</option>
+            <option value="yard">Yard Waste</option>
+            <option value="appliances">Appliances</option>
+            <option value="mixed">Mixed Load</option>
+          </select>
+        </label>
+        <label>Truck Size
+          <select name="truckSize" required>
+            <option value="pickup">Pickup</option>
+            <option value="box16">16ft Box Truck</option>
+            <option value="box24">24ft Box Truck</option>
+            <option value="dump">Dump Truck</option>
+          </select>
+        </label>
+        <label class="inline"><input type="checkbox" name="withDriver" checked /> Include driver</label>
+        <label>When <input type="datetime-local" name="when" required /></label>
+        <button class="btn" type="submit">Get Instant Estimate</button>
+      </form>
+      <div id="estimate" class="result hidden"></div>
+      <div id="map" aria-label="route map"></div>
+    </section>
+
+    <section id="post" class="card">
+      <h2>Post Your Truck</h2>
+      <form id="truckForm" class="grid">
+        <label>Owner Name <input required name="owner" /></label>
+        <label>City <input required name="city" /></label>
+        <label>Truck Type
+          <select required name="type">
+            <option>Pickup</option><option>Box Truck</option><option>Dump Truck</option><option>Flatbed</option>
+          </select>
+        </label>
+        <label>Hourly Rate ($) <input required type="number" name="rate" min="20" /></label>
+        <label class="inline"><input type="checkbox" name="driverAvailable" checked /> Driver available</label>
+        <button class="btn" type="submit">Publish Listing</button>
+      </form>
+      <div id="listings" class="listings"></div>
+    </section>
+
+    <section id="how" class="card">
+      <h2>Retention + Growth Engine</h2>
+      <ol>
+        <li>One-tap rebooking from past jobs.</li>
+        <li>Referral credits for both sides.</li>
+        <li>Smart price suggestions from demand patterns.</li>
+        <li>Automated reminders + real-time chat hooks.</li>
+      </ol>
+      <p class="note">API-ready architecture: Stripe (payments), Twilio (SMS), Mapbox/Google Maps (routing), Firebase/Supabase (auth + DB), Segment/Mixpanel (analytics), SendGrid (lifecycle campaigns).</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built concept for a viral local logistics marketplace. © <span id="year"></span> HaulNow.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
